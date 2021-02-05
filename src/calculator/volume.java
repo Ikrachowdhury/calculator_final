@@ -25,8 +25,8 @@ public  class volume extends JFrame implements KeyListener{
     private JComboBox unit;
     private String[] unit_list = {"cm","mm","micrometer","nanometer" ,"foot","mile","ich"};
     volume(){
-      framekey(); 
-      setVisible(true);
+        
+      framekey();  
       setDefaultCloseOperation(JFrame. DISPOSE_ON_CLOSE);
       this.setLocationRelativeTo(null);
       setBounds(200,50,600,300);

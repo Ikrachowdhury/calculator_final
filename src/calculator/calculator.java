@@ -44,8 +44,10 @@ public class calculator extends history implements ActionListener{
     int flag=0;
     //creating frame
     JFrame frame_constanttable=new JFrame();
-    JFrame frame_main=new JFrame(); 
+    JFrame frame_main=new JFrame();
     
+    volume v=new volume();
+    percentage p= new percentage();
     
     
        
@@ -53,17 +55,13 @@ public class calculator extends history implements ActionListener{
          
         oparand1=operator=oparand2=operator2=""; 
         Framekey_main();
-         
-         
-   
+ 
     }
     
-    //_______________________frame creation for main visible jframe
+    //************************frame creation for main visible jframe
     public void Framekey_main(){
-     
-          
-          
-         
+ 
+         //components
          panel_main= new JPanel();
          frame_main.add(panel_main);
          panel_main.setBackground(Color.black);
@@ -116,11 +114,11 @@ public class calculator extends history implements ActionListener{
          button_design(bh);
          delete=new JButton("D"); 
          button_design(delete);
-         constants=new JButton("L"); 
+         constants=new JButton("constant"); 
          button_design(constants);
          percentage =new JButton("%"); 
          button_design(percentage);
-         unitconverter =new  JButton("UC"); 
+         unitconverter =new  JButton("Units "); 
          button_design(unitconverter);
       
         
@@ -353,7 +351,7 @@ public class calculator extends history implements ActionListener{
          frame_constanttable.add(panel_constanttable);
          panel_constanttable.setLayout(new GridBagLayout());
          
-         
+       //*******button design  
        pi= new JButton("p");
        button_design(pi);
        gravity= new JButton("g");
@@ -526,21 +524,21 @@ public class calculator extends history implements ActionListener{
          tan60.addActionListener(this);
          tan90.addActionListener(this); 
         
+        //***********final frame work
+        panel_constanttable.setBackground(Color.black); 
+        frame_constanttable.setDefaultCloseOperation(frame_constanttable. DISPOSE_ON_CLOSE);
+        frame_constanttable.setBounds(0, 0, 450, 250);
+        frame_constanttable.setLocation(frame_main.getX() + frame_main.getWidth(), frame_main.getY());
+        frame_constanttable.setVisible(true);
+        frame_constanttable.setResizable(false);
          
-           panel_constanttable.setBackground(Color.black); 
-           frame_constanttable.setDefaultCloseOperation(frame_constanttable. DISPOSE_ON_CLOSE);
-           frame_constanttable.setBounds(400, 180, 500, 420);
-           frame_constanttable.setLocation(frame_main.getX() + frame_main.getWidth(), frame_main.getY());
-           frame_constanttable.setVisible(true);
-           frame_constanttable.setResizable(false);
-           //frame_constanttable.pack();
             
       
           
     }
     
  
-    //_________________________Error sound function
+    //*************************Error sound function//
      private void sound(){
         try{
         AudioClip clip = Applet.newAudioClip(getClass().getResource("/calculator/error.wav"));
@@ -560,49 +558,43 @@ public class calculator extends history implements ActionListener{
         String s=e.getActionCommand();
         
           
-                           // ____________checks for operators___________________//
+                 //******************checks for oparands***********************8//
  
         if((s.charAt(0)>='0'&&s.charAt(0)<='9')|| s.charAt(0)=='.'){
             
             //solution for point in a operand
+            //if flag is 1 means we already have a point in operand then
+            //so programm will not take point for operand
              if(s.charAt(0)=='.'){
                   
                if(flag==0){
-                   
-                flag=1;   
-               } 
-               //if flag is 1 means we already have a point in operand then
-               //so programm will not take point for operand
-               else
-               {
-                   s="";   
+                    flag=1;   
                }    
-               
+               else  { 
+                   s="";   
+               }                 
            }
             
             //if operator is available value goes to operand 2
+            //if we have - takes - along with next operand
              if(!operator.equals("")){
             
                  if(!oparand1.equals("")&&!operator2.equals("")){
-                   
-               oparand2=operator2+s; 
-                text_field.setText(oparand1+operator+oparand2);
-                 operator2="";
+                   oparand2=operator2+s; 
+                  text_field.setText(oparand1+operator+oparand2);
+                  operator2="";
               }
                  else{
                   oparand2=oparand2+s;    
-                 }
-               
-    
+                 } 
             }
             
-            //if we have operator before first operand .operand goes to operand 1
+            //if we have - operator before first operand .operand goes to operand 1
             else if(!operator2.equals("")){
              
               oparand1=operator2+s; 
               text_field.setText(oparand1);
-              operator2="";
-               
+              operator2="";  
             }
             
             //if no operator vallue then goes to operand one
@@ -610,30 +602,26 @@ public class calculator extends history implements ActionListener{
                 
                 //if we already got and output  then erases the feild
                 if(count==1){
-                    
                      text_field.setText("");
                      oparand1=s;
                      count=0;
-                   }
-                
-                else{ 
-                        
+                   } 
+                else{       
                     oparand1=oparand1+s;   
                 }  
             }  
-            
             //setting  all values in textfield
             text_field.setText(oparand1+operator+oparand2);
              
         } 
         
         
-                  //____________________________checks for operarss___________________________//
+                  //***********************checks for operarss*********************//
         
          else if(s.charAt(0)=='+'|| s.charAt(0)=='-'||s.charAt(0)=='*'||s.charAt(0)=='/'){
              
-             double te=0;
-             flag=0;
+             double result=0;
+             flag=0;//for ponit
              
              //if there is no previous operator and 2nd operand
            if(operator.equals("")==true && oparand2.equals("")==true){
@@ -666,20 +654,22 @@ public class calculator extends history implements ActionListener{
              }
              
              else if(oparand2.equals("")){
-               JOptionPane.showMessageDialog(null, "Can not give another oparand with point");  
+               JOptionPane.showMessageDialog(null, "Can not give another  operator");
+               sound();
              }
+             
              else{
                 if(s.equals("+"))
-                    te=Double.parseDouble(oparand1)+Double.parseDouble(oparand2);
+                    result=Double.parseDouble(oparand1)+Double.parseDouble(oparand2);
                 if(s.equals("-"))
-                    te=Double.parseDouble(oparand1)-Double.parseDouble(oparand2);
+                    result=Double.parseDouble(oparand1)-Double.parseDouble(oparand2);
                 if(s.equals("*"))
-                    te=Double.parseDouble(oparand1)*Double.parseDouble(oparand2);
+                    result=Double.parseDouble(oparand1)*Double.parseDouble(oparand2);
                 if(s.equals("/"))
-                    te=Double.parseDouble(oparand1)/Double.parseDouble(oparand2);
+                    result=Double.parseDouble(oparand1)/Double.parseDouble(oparand2);
                 
                 
-                oparand1=Double.toString(te);
+                oparand1=Double.toString(result);
                 operator=s;
                 oparand2="";
                 text_field.setText(oparand1+operator+oparand2);
@@ -688,41 +678,45 @@ public class calculator extends history implements ActionListener{
              
         } 
      
-          //_____________________________ans geting____________________________________//
+          //_*************************ans geting*************************8//
          
         else if(s.charAt(0)=='='){
             
             count=1;
             
             if((oparand1=="")||(operator!=""&&oparand2=="")||(oparand1==".")||(oparand2==".")){
-                sound();
-                text_field.setText("SYNTAX ERROR");
+               
+                sound();  
                 oparand1=operator=oparand2="";
                 JOptionPane.showMessageDialog(null, "ERROR");
             }
+            
             else if(oparand1!="" && oparand2==""){
+                
                 text_field.setText(oparand1+"="+oparand1);
             }
+            
             else{
-            double te=0;
+                
+            double result=0;
             
             if(operator.equals("+")){
-                te=Double.parseDouble(oparand1)+Double.parseDouble(oparand2);
+                result=Double.parseDouble(oparand1)+Double.parseDouble(oparand2);
              }
             
             else if(operator.equals("-")){
-                te=Double.parseDouble(oparand1)-Double.parseDouble(oparand2);
+                result=Double.parseDouble(oparand1)-Double.parseDouble(oparand2);
              }
             
             else if(operator.equals("*")){
-                te=Double.parseDouble(oparand1)*Double.parseDouble(oparand2);
+                result=Double.parseDouble(oparand1)*Double.parseDouble(oparand2);
              }
             
             else if(operator.equals("/")){
-                  te=Double.parseDouble(oparand1)/Double.parseDouble(oparand2);
+                  result=Double.parseDouble(oparand1)/Double.parseDouble(oparand2);
              }
             
-            text_field.setText(oparand1+operator+oparand2+"="+te);
+            text_field.setText(oparand1+operator+oparand2+"="+result);
             operator="";
             
             
@@ -734,7 +728,7 @@ public class calculator extends history implements ActionListener{
              
             //________________________________________________________//
             
-            oparand1=Double.toString(te);
+            oparand1=Double.toString(result);
             operator="";
             oparand2="";
             
@@ -746,7 +740,7 @@ public class calculator extends history implements ActionListener{
 //_______________________________other functions________________________________________//
        
         //Constant table
-        else if(s.charAt(0)=='L'){
+        else if(s =="constant"){
            Framekey_constanttable();
         }
         
@@ -761,22 +755,28 @@ public class calculator extends history implements ActionListener{
         //History frame showing
         else if(s.charAt(0)=='H'){
             
+         v.setVisible(false);
+          p.setVisible(false);
          frame_history.setLocation(frame_main.getX() + frame_main.getWidth(), frame_main.getY());
-          super.read_file();
+         super.read_file();
          frame_history.setVisible(true);
         }
         
         //Volume calculation
-        else if(s.charAt(0)=='U'){
+        else if(s =="Units "){
             
-             volume v=new volume();
+             frame_history.setVisible(false);
+             p.setVisible(false);
+             v.setLocation(frame_main.getX() + frame_main.getWidth(), frame_main.getY());
              v.setVisible(true);
         }
         
         //Percentage calculation
         else if(s.charAt(0)=='%'){
             
-             percentage p= new percentage();
+            frame_history.setVisible(false);
+             v.setVisible(false);
+             p.setLocation(frame_main.getX() + frame_main.getWidth(), frame_main.getY());
              p.setVisible(true); 
         }
         
@@ -799,85 +799,71 @@ public class calculator extends history implements ActionListener{
 
 //*******************************************constant table work***************************************//
        else{
-            
-                                    //**************puting actual value to string*****************//   
+                                          
         if(s=="p"){
              
              s="3.1416";
-           // text_field.setText(s);  
-           }
+         }
+        
          if(s=="t"){
              
              s="98";
-           // text_field.setText(s);
-        
-           }
+            }
         
        else if(s =="g"){
-            s="9.8";
-             //text_field.setText(s); 
-           } 
+            s="9.8";       } 
        
        else if( s=="cos45"){
-            s="0.70";
-              //text_field.setText(s);  
-           }
-       else if( s=="cos60"){
-            s="0.5";
-              //text_field.setText(s);  
+            s="0.70";       
            }
        
+       else if( s=="cos60"){
+            s="0.5"; 
+       }
+       
        else if( s =="cos30"){
-            s="0.866";
-              //text_field.setText(s);  
+            s="0.866";    
            } 
        
        else if( s =="cos90"){
             s="0";
-              //text_field.setText(s); 
+            
            }
        else if( s=="sin45"){
             s="0.70";
-              //text_field.setText(s); 
-            
+   
            }
        
        else if( s=="sin30"){
             s="0.5";
-              //text_field.setText(s);  
-           }
+       }
        
        else if( s =="sin60"){
             s="0.86";
-              //text_field.setText(s);  
+    
            }
        
        else if( s=="sin90"){
             s="1";
-              //text_field.setText(s); 
-            
+      
            }
+       
        else if( s.equals("tan45")){
-            s="1";
-              //text_field.setText(s); 
-            
+            s="1";     
            }
        
        else if( s=="tan30"){
-            s=" 0.57";
-              //text_field.setText(s);  
+            s=" 0.57"; 
            }
        
        else if( s =="tan60"){
-            s="1.73";
-              //text_field.setText(s);  
-           }
+            s="1.73";            }
        
        else if(s =="tan90"){
-            s="";
-              //text_field.setText(s); 
-            
+            s="";    
            } 
+         
+         
                     //*********** again operand taking from the constant value******************//
    //if no oparand with point                            
    if(s=="98"||s=="0"||s=="1"){
@@ -920,7 +906,7 @@ public class calculator extends history implements ActionListener{
                  }
    //for tan90
    else if(s==""){
-             
+         sound();    
          JOptionPane.showMessageDialog(null, " undefined");  
    }
    
@@ -979,8 +965,10 @@ public class calculator extends history implements ActionListener{
        
         }
      
+     
+     
         //***********************design for button******************//
-       public void button_design(JButton button){
+     public void button_design(JButton button){
       
          button.setFont(new Font(Font.SERIF, Font.BOLD,20));
          button.setForeground(Color.white);
