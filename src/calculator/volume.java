@@ -148,12 +148,8 @@ public  class volume extends JFrame implements KeyListener{
 
                         ke.consume();
 
-                    }
-                
-                       
-                }
-                
-
+                    }      
+                } 
             }
 
             @Override
