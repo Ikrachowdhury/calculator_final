@@ -43,8 +43,8 @@ public class calculator extends history implements ActionListener{
     //if we have more than one point in a operand the flag becomes 1
     int flag=0;
     //creating frame
-    JFrame frame_constanttable=new JFrame();
-    JFrame frame_main=new JFrame();
+    JFrame frame_constanttable=new JFrame( );
+    JFrame frame_main=new JFrame("Calculator");
     
     volume v=new volume();
     percentage p= new percentage();
@@ -782,17 +782,39 @@ public class calculator extends history implements ActionListener{
         
         //Deleting number by number
         else if(s.equals("D")){
-            
+ 
             int length=text_field.getText().length();
             int n=length-1;
             
+ 
+            /* s_oparand= oparand1.substring( oparand1.length()- 1);
+             line=text_field.getText();
+              */
             if(length>0){
+         
+             String line,value,l;
+             line=text_field.getText();
+             value=line.substring(line.length()- 1);
+             
                 StringBuilder str=new StringBuilder(text_field.getText());
                 str.deleteCharAt(n);
                 String text=str.toString();
-                text_field.setText(text);
-                
-            }             
+                text_field.setText(text); 
+            
+                if(operator.endsWith(value))
+                   operator="";  
+                 
+              /*   
+                for (int i = 0 ; i != oparand1.length() ; i++) {
+                 StringBuilder str1=new StringBuilder(oparand1);  
+                     
+                 if(str.charAt(i) ==value.charAt(i)){
+                  str.deleteCharAt(i);
+                 
+                }     
+            } */
+            } 
+             
         }
           
 
@@ -957,6 +979,7 @@ public class calculator extends history implements ActionListener{
       else
                {
                    s=""; 
+                   sound();
                    JOptionPane.showMessageDialog(null, "Can not give another oparand with point");
                }    
             }
