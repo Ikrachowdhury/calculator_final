@@ -1,30 +1,9 @@
  
 package calculator;
 import java.applet.Applet;
-import java.applet.AudioClip;
-import java.awt.BasicStroke;
-import java.awt.LayoutManager;
- import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import java.applet.AudioClip; 
+import java.awt.*;
+import java.awt.event.*; 
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.border.AbstractBorder;
@@ -756,9 +735,10 @@ public class calculator extends history implements ActionListener{
         else if(s.charAt(0)=='H'){
             
          v.setVisible(false);
-          p.setVisible(false);
+         p.setVisible(false);
          frame_history.setLocation(frame_main.getX() + frame_main.getWidth(), frame_main.getY());
-         super.read_file();
+         super.inputBox.setText(null); 
+         super.read_file(); 
          frame_history.setVisible(true);
         }
         
