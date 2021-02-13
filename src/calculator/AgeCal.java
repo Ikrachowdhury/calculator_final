@@ -1,5 +1,5 @@
-
 package calculator;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
@@ -10,72 +10,70 @@ import javax.swing.JOptionPane;
 
 public class AgeCal extends javax.swing.JFrame {
 
-    
-    int day,year;
+    int day, year;
     Month month;
-    String dl,ml,yl;
-    
+    String dl, ml, yl;
+
     public AgeCal() {
-        
+
         this.setTitle("Age Calculator");
         initComponents();
-        
+
         hbd.setVisible(false);
-        
-        dd.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
-                char c= e.getKeyChar();
-                
-                if(!( c >='0' && c <='9' || (c == KeyEvent.VK_BACK_SPACE) || (c== KeyEvent.VK_DELETE))){
+
+        dd.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                if (!(c >= '0' && c <= '9' || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
                     e.consume();
-                    JOptionPane.showMessageDialog(null,"Numbers (1 to 31) only");
-                    
+                    JOptionPane.showMessageDialog(null, "Numbers (1 to 31) only");
+
                 }
             }
         });
-        
-        mm.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
-                char c= e.getKeyChar();
-                
-                if(!( c >='0' && c <='9' || (c == KeyEvent.VK_BACK_SPACE) || (c== KeyEvent.VK_DELETE))){
+
+        mm.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                if (!(c >= '0' && c <= '9' || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
                     e.consume();
-                    JOptionPane.showMessageDialog(null,"Numbers (1 to 12) only");
-                    
+                    JOptionPane.showMessageDialog(null, "Numbers (1 to 12) only");
+
                 }
             }
         });
-        
-        yy.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
-                char c= e.getKeyChar();
-                
-                if(!( c >='0' && c <='9' || (c == KeyEvent.VK_BACK_SPACE) || (c== KeyEvent.VK_DELETE))){
+
+        yy.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                if (!(c >= '0' && c <= '9' || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
                     e.consume();
-                    JOptionPane.showMessageDialog(null,"Numbers (0 t0 9) only");
-                    
+                    JOptionPane.showMessageDialog(null, "Numbers (0 t0 9) only");
+
                 }
             }
         });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent ex) {
-                try{
-               day= Integer.parseInt(dd.getText());
-               month= Month.of(Integer.parseInt(mm.getText()));
-               year= Integer.parseInt(yy.getText());
-              }catch(Exception e){
-                   
-                   JOptionPane.showMessageDialog(null,"Enter Day, Month & Year as Correct Format!");
-               
-            }
+                try {
+                    day = Integer.parseInt(dd.getText());
+                    month = Month.of(Integer.parseInt(mm.getText()));
+                    year = Integer.parseInt(yy.getText());
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(null, "Enter Day, Month & Year as Correct Format!");
+
+                }
             }
         });
-        
+
         this.setVisible(true);
-               
+
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -237,45 +235,40 @@ public class AgeCal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmActionPerformed
-             
+
     }//GEN-LAST:event_mmActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-           
-        LocalDate dob= LocalDate.of(year, month, day);
-        LocalDate now= LocalDate.now();
-        
-        Period diff= Period.between(dob, now);
-        dl= String.valueOf(diff.getDays());
-        ml= String.valueOf(diff.getMonths());
-        yl= String.valueOf(diff.getYears());
-        
-               dy.setText(dl);
-               mn.setText(ml);
-               yr.setText(yl);
-        
-        if(dl.equals("0") && ml.equals("0")){
-                   hbd.setVisible(true);
-               }
-        else{
+
+        LocalDate dob = LocalDate.of(year, month, day);
+        LocalDate now = LocalDate.now();
+
+        Period diff = Period.between(dob, now);
+        dl = String.valueOf(diff.getDays());
+        ml = String.valueOf(diff.getMonths());
+        yl = String.valueOf(diff.getYears());
+
+        dy.setText(dl);
+        mn.setText(ml);
+        yr.setText(yl);
+
+        if (dl.equals("0") && ml.equals("0")) {
+            hbd.setVisible(true);
+        } else {
             hbd.setVisible(false);
         }
-               
-              
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddActionPerformed
-        
+
     }//GEN-LAST:event_ddActionPerformed
 
     private void yyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yyActionPerformed
-      
+
     }//GEN-LAST:event_yyActionPerformed
 
-    
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

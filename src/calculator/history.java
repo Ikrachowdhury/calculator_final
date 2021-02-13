@@ -80,7 +80,7 @@ public class history {
             System.out.println("File writer" + ex);
         }
          
-         if(lines>3){ 
+         if(lines>2){ 
           deletefile();
           lines=0;
          }
@@ -133,7 +133,7 @@ public class history {
 
             br.close();
 
-            File file = new File("D:\\2\\2.1\\project\\calculator-master\\calculator-master\\output1.txt");
+            File file = new File("output1.txt");
             file.delete();
             file.createNewFile();
 
@@ -145,6 +145,7 @@ public class history {
                 pw.println(list.get(counter)); 
 
             }
+            list.clear();
             pw.close();
 
         } catch (FileNotFoundException ex) {
