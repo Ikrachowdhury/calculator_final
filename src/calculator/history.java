@@ -71,7 +71,7 @@ public class history {
             FileWriter fw = new FileWriter(file, true);
 
             PrintWriter pw = new PrintWriter(fw);
-            pw.println(result + "    " + java.time.LocalDate.now());
+            pw.println(result + "         Date-" + java.time.LocalDate.now());
             pw.close();
 
         } catch (IOException ex) {
@@ -140,8 +140,7 @@ public class history {
 
             for (counter = 1; counter < list.size(); counter++) {
 
-                pw.println(list.get(counter));
-                System.out.println(list.get(counter));
+                pw.println(list.get(counter)); 
 
             }
             pw.close();

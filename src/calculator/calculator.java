@@ -37,7 +37,7 @@ public class calculator extends history implements ActionListener{
  
     }
     
-    //************************frame creation for main visible jframe
+    //************************frame creation for main visible jframe************//
     public void Framekey_main(){
  
          //components
@@ -652,12 +652,15 @@ public class calculator extends history implements ActionListener{
                 operator=s;
                 oparand2="";
                 text_field.setText(oparand1+operator+oparand2);
+                
+                super.write_file(text_field.getText());
+                frame_history.setVisible(false);
              }  
            }
              
         } 
      
-          //_*************************ans geting*************************8//
+          //*************************ans geting*************************8//
          
         else if(s.charAt(0)=='='){
             
@@ -770,21 +773,32 @@ public class calculator extends history implements ActionListener{
             /* s_oparand= oparand1.substring( oparand1.length()- 1);
              line=text_field.getText();
               */
-            if(length>0){
-         
-             String line,value,l;
-             line=text_field.getText();
-             value=line.substring(line.length()- 1);
-             
-                StringBuilder str=new StringBuilder(text_field.getText());
+            if (length > 0) {
+
+                String line, value;
+                line = text_field.getText();
+                value = line.substring(line.length() - 1);
+
+                StringBuilder str = new StringBuilder(text_field.getText());
                 str.deleteCharAt(n);
-                String text=str.toString();
-                text_field.setText(text); 
-            
-                if(operator.endsWith(value))
-                   operator="";  
-                 
-              /*   
+                String text = str.toString();
+                text_field.setText(text);
+
+                if (operator.endsWith(value)) {
+                    operator = "";
+                } else if (!oparand2.endsWith(value)&& !operator.endsWith(value)&&!oparand1.equals("")) {
+
+                    oparand1 = oparand1.substring(0, oparand1.length() - 1);
+
+                } else if (oparand2.endsWith(value)&&oparand1.endsWith(value)) {
+
+                    oparand2 = oparand2.substring(0, oparand2.length() - 1);
+
+                }else{
+                    oparand2 = oparand2.substring(0, oparand2.length() - 1);
+                }
+
+                /*   
                 for (int i = 0 ; i != oparand1.length() ; i++) {
                  StringBuilder str1=new StringBuilder(oparand1);  
                      
@@ -793,7 +807,7 @@ public class calculator extends history implements ActionListener{
                  
                 }     
             } */
-            } 
+            }
              
         }
           
