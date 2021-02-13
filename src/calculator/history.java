@@ -80,7 +80,7 @@ public class history {
             System.out.println("File writer" + ex);
         }
          
-         if(lines>13){
+         if(lines>3){ 
           deletefile();
           lines=0;
          }

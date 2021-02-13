@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 public class calculator extends history implements ActionListener{
     String oparand1,operator,oparand2,operator2 ;
     JTextField text_field;
-    JButton b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bp,badd,bsub,bmul,bdiv,beq,bcl,bh,delete,constants,percentage,unitconverter ;
+    JButton b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bp,badd,bsub,bmul,bdiv,beq,bcl,bh,delete,constants,percentage,unitconverter,age ;
     JButton pi,gravity,temparature, cos45,cos90,cos30,cos60,sin45,sin90,sin30,sin60,tan45,tan90,tan30,tan60 ;
     //count is for counting if we already done a calculation
     int count =0;
@@ -27,6 +27,7 @@ public class calculator extends history implements ActionListener{
     
     volume v=new volume();
     percentage p= new percentage();
+     
     
     
        
@@ -46,7 +47,7 @@ public class calculator extends history implements ActionListener{
          panel_main.setBackground(Color.black);
          panel_main.setLayout(new GridBagLayout());
          
-        text_field=new JTextField(10); 
+        text_field=new JTextField(5); 
         text_field.setEditable(false);
         text_field.setFont(new Font(Font.SERIF, Font.BOLD,20));
         text_field.setBorder(BorderFactory.createCompoundBorder(
@@ -97,8 +98,10 @@ public class calculator extends history implements ActionListener{
          button_design(constants);
          percentage =new JButton("%"); 
          button_design(percentage);
-         unitconverter =new  JButton("Units "); 
+         unitconverter =new  JButton("Unit"); 
          button_design(unitconverter);
+         age =new JButton("Age"); 
+         button_design(age);
       
         
          
@@ -109,12 +112,19 @@ public class calculator extends history implements ActionListener{
         
         
         c.gridy = 0;
-        c.gridwidth =2;
-        c.fill = GridBagConstraints.BOTH;
-      
+        c.gridwidth =1;
+        c.fill = GridBagConstraints.BOTH; 
         c.insets = new Insets(5, 5, 5, 5);
        
-        panel_main.add(text_field, c);
+        panel_main.add(bh, c);
+        
+        
+        c.gridy = 0;
+        c.gridwidth =1;
+        c.fill = GridBagConstraints.BOTH; 
+        c.insets = new Insets(5, 5, 5, 5);
+       
+        panel_main.add(bcl, c);
        
          
         c.gridy = 0;
@@ -122,7 +132,7 @@ public class calculator extends history implements ActionListener{
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(5, 5, 5, 5);
        
-         panel_main.add(bcl,c);
+         panel_main.add(delete,c);
        
          
         c.gridy = 0;
@@ -130,7 +140,7 @@ public class calculator extends history implements ActionListener{
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(5, 5, 5, 5);
        
-         panel_main.add(percentage,c);
+         panel_main.add(text_field,c);
 
        
         c.gridy = 1;
@@ -254,7 +264,7 @@ public class calculator extends history implements ActionListener{
         c.gridwidth =1;
         c.insets = new Insets(5, 5, 5, 5);
         
-         panel_main.add(bh,c);
+         panel_main.add(age,c);
             
            
         c.gridy = 5;
@@ -262,22 +272,14 @@ public class calculator extends history implements ActionListener{
         c.gridwidth =1;
         c.insets = new Insets(5, 5, 5, 5);
         
-         panel_main.add(delete,c);
+         panel_main.add(percentage,c);
      
         c.gridy = 5;
         c.fill = GridBagConstraints.BOTH; 
         c.gridwidth =1;
         c.insets = new Insets(5, 5, 5, 5);
         
-         panel_main.add(constants,c);
-         
-    
-        c.gridy = 5;
-        c.fill = GridBagConstraints.BOTH; 
-        c.gridwidth =1;
-        c.insets = new Insets(5, 5, 5, 5);
-        
-         panel_main.add(constants,c);
+         panel_main.add(unitconverter,c);
          
       
         c.gridy = 5;
@@ -285,7 +287,7 @@ public class calculator extends history implements ActionListener{
         c.gridwidth =1;
         c.insets = new Insets(5, 5, 5, 5);
         
-        panel_main.add(unitconverter,c);
+        panel_main.add(constants,c);
           
       
           
@@ -312,6 +314,7 @@ public class calculator extends history implements ActionListener{
          constants.addActionListener(this);
          percentage.addActionListener(this);
          unitconverter.addActionListener(this);
+         age.addActionListener(this);
           
         //*********************frame setting****************//
          frame_main.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -746,12 +749,19 @@ public class calculator extends history implements ActionListener{
         }
         
         //Volume calculation
-        else if(s =="Units "){
+        else if(s =="Unit"){
             
              frame_history.setVisible(false);
              p.setVisible(false);
              v.setLocation(frame_main.getX() + frame_main.getWidth(), frame_main.getY());
              v.setVisible(true);
+        }
+        //age calculation
+        else if(s=="Age"){
+           
+            AgeCal agecal =new AgeCal();
+           agecal.setLocation(frame_main.getX() + frame_main.getWidth(), frame_main.getY());
+     
         }
         
         //Percentage calculation
@@ -987,7 +997,7 @@ public class calculator extends history implements ActionListener{
         //***********************design for button******************//
      public void button_design(JButton button){
       
-         button.setFont(new Font(Font.SERIF, Font.BOLD,20)); 
+         button.setFont(new Font(Font.SERIF, Font.BOLD,20));  
          button.setForeground(Color.white);
          button.setBackground(new Color(1,51,20)); 
          button.setBorder(BorderFactory.createCompoundBorder(
