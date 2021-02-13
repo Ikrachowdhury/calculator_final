@@ -31,6 +31,7 @@ public class history {
         inputBox.setForeground(Color.white);
         inputBox.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         inputBox.setEditable(false);
+        
 
         inputbox_scrollpane = new JScrollPane(inputBox);
         inputbox_scrollpane.setPreferredSize(new Dimension(430, 370));
