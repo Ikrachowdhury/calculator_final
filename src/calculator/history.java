@@ -27,7 +27,8 @@ public class history {
 
         //componants
         inputBox = new JTextPane();
-        inputBox.setBackground(Color.white);
+        inputBox.setBackground(Color.BLACK);
+        inputBox.setForeground(Color.white);
         inputBox.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         inputBox.setEditable(false);
 
@@ -78,7 +79,7 @@ public class history {
             System.out.println("File writer" + ex);
         }
          
-         if(lines>15){
+         if(lines>13){
           deletefile();
           lines=0;
          }

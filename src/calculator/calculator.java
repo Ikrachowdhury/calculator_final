@@ -987,7 +987,7 @@ public class calculator extends history implements ActionListener{
         //***********************design for button******************//
      public void button_design(JButton button){
       
-         button.setFont(new Font(Font.SERIF, Font.BOLD,20));
+         button.setFont(new Font(Font.SERIF, Font.BOLD,20)); 
          button.setForeground(Color.white);
          button.setBackground(new Color(1,51,20)); 
          button.setBorder(BorderFactory.createCompoundBorder(
@@ -1006,7 +1006,8 @@ public class calculator extends history implements ActionListener{
             g2d.drawRoundRect(x, y, width - 1, height - 1, 25, 25);
         } 
     } 
-      private static class CustomeBorder2 extends AbstractBorder{
+     
+     private static class CustomeBorder2 extends AbstractBorder{
      public void paintBorder(Component c, Graphics g, int x, int y,
                 int width, int height) {
             // TODO Auto-generated method stubs
