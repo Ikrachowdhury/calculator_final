@@ -26,10 +26,10 @@ public class history {
         frame_history.add(panel_history);
 
         //componants
-        inputBox = new JTextPane();
+        inputBox = new JTextPane(); 
+        inputBox.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         inputBox.setBackground(Color.BLACK);
         inputBox.setForeground(Color.white);
-        inputBox.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         inputBox.setEditable(false);
         
 
