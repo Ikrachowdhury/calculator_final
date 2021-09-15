@@ -629,8 +629,8 @@ public class calculator extends history implements ActionListener{
          else if(!operator.equals("")){ 
              
              //if we have another minas
-             if(s.charAt(0)=='-'&& oparand2.equals("")){
-                 
+             if(s.charAt(0)=='-'&& oparand2.equals("")){ 
+ 
                  operator2=s; 
                  text_field.setText( oparand1+operator+operator2+oparand2);
              }
@@ -796,7 +796,10 @@ public class calculator extends history implements ActionListener{
 
                 if (operator.endsWith(value)) {
                     operator = "";
-                } else if (!oparand2.endsWith(value)&& !operator.endsWith(value)&&!oparand1.equals("")) {
+                }else if(operator2.endsWith(value)){//chanched operator 2 delete blb
+                   operator2= ""; 
+                }
+                else if (!oparand2.endsWith(value)&& !operator.endsWith(value)&&!oparand1.equals("")) {
 
                     oparand1 = oparand1.substring(0, oparand1.length() - 1);
 
