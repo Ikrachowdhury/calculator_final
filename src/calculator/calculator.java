@@ -796,7 +796,7 @@ public class calculator extends history implements ActionListener{
 
                 if (operator.endsWith(value)) {
                     operator = "";
-                }else if(operator2.endsWith(value)){//chanched operator 2 delete blb
+                }else if(operator2.endsWith(value)){//chanched operator 2 delete bla
                    operator2= ""; 
                 }
                 else if (!oparand2.endsWith(value)&& !operator.endsWith(value)&&!oparand1.equals("")) {
@@ -807,9 +807,9 @@ public class calculator extends history implements ActionListener{
 
                     oparand2 = oparand2.substring(0, oparand2.length() - 1);
 
-                }else{
-                    oparand2 = oparand2.substring(0, oparand2.length() - 1);
-                }
+                }else if(oparand2.endsWith(value)){
+                    oparand2 = oparand2.substring(0, oparand2.length() - 1);//changed
+                } 
 
                 /*   
                 for (int i = 0 ; i != oparand1.length() ; i++) {
